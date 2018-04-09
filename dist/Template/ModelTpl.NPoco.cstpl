@@ -1,0 +1,25 @@
+﻿using System;
+using NPoco;
+
+namespace ECIS.Common.Entity
+{
+    /// <summary>
+    /// $!{Table.Comment}
+    /// </summary>
+	[PrimaryKey(primaryKey: "$!{Columns}.Find((col)={return col.IsPrimaryKey;}).Name")]
+    public class $!{Table.Name} : IModelable
+    {
+#foreach($!{Column} in $!{Columns})
+        /// <summary>
+        /// $!{this.GetColumn($Table,$i).Comment}
+        /// </summary>		
+        public $!{this.GetCsType($!{this.GetColumn($Table,$i)})} $!{this.GetColumn($Table,$i).Name}
+		{ 
+			get;
+			set;
+		}
+
+#set($i=$i+1)
+#end
+    }
+}
