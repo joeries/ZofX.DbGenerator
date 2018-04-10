@@ -43,21 +43,21 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="ZofX.Common 3.0">
-      <HintPath>..\ZofX.Reference\ZofX.ThreeTire 3.0\ZofX.Common 3.0.dll</HintPath>
+      <HintPath>Reference\ZofX.Common 3.0.dll</HintPath>
     </Reference>
     <Reference Include="ZofX.DAL 3.1">
-      <HintPath>..\ZofX.Reference\ZofX.ThreeTire 3.0\ZofX.DAL 3.1.dll</HintPath>
+      <HintPath>Reference\ZofX.DAL 3.1.dll</HintPath>
     </Reference>
     <Reference Include="ZofX.Library 3.0, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ZofX.Reference\ZofX.ThreeTire 3.0\ZofX.Library 3.0.dll</HintPath>
+      <HintPath>Reference\ZofX.Library 3.0.dll</HintPath>
     </Reference>
     <Reference Include="ZofX.Model 3.0">
-      <HintPath>..\ZofX.Reference\ZofX.ThreeTire 3.0\ZofX.Model 3.0.dll</HintPath>
+      <HintPath>Reference\ZofX.Model 3.0.dll</HintPath>
     </Reference>
     <Reference Include="ZofX.NvelocityHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ZofX.Reference\ZofX.NvelocityHelper\ZofX.NvelocityHelper.dll</HintPath>
+      <HintPath>Reference\ZofX.NvelocityHelper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
