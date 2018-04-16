@@ -1,0 +1,21 @@
+﻿[sharp][sharp][sharp] $!{ConnType}数据库【$!{DatabaseName}】数据字典
+* PK：主键
+* AI：标识
+* FK：外键
+
+#foreach($!{Table} in $!{Tables})    
+    
+[sharp][sharp][sharp][sharp] 表$!{i}：$!{this.GetTable($i).Name}
+
+|字段名称|数据类型|属性|允许空|默认值|备注|
+|:-|:-:|:-:|:-:|:-:|:-|
+#set($j=0)
+#foreach($!{Column} in $!{this.GetColumns($i)})
+|$!{this.GetColumn($!{this.GetColumns($i)},$j).Name}|$!{this.GetColumn($!{this.GetColumns($i)},$j).DataType}($!{this.GetColumn($!{this.GetColumns($i)},$j).MaxLength})|#if($!{this.GetColumn($!{this.GetColumns($i)},$j).IsPrimaryKey})PK#end #if($!{this.GetColumn($!{this.GetColumns($i)},$j).IsAutoIncrease})AI#end|#if($!{this.GetColumn($!{this.GetColumns($i)},$j).IsNullable})是#end|$!{this.GetColumn($!{this.GetColumns($i)},$j).DefaultValue}|$!{this.GetColumn($!{this.GetColumns($i)},$j).Comment}|    
+#set($j=$j+1)
+#end
+
+[sharp][sharp][sharp][sharp] 备注：
+
+#set($i=$i+1)
+#end

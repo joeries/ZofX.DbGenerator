@@ -1,0 +1,77 @@
+﻿<html>
+<head>
+    <title>$!{ConnType}数据库【$!{DatabaseName}】的数据字典</title>
+    <style>
+        table
+        {
+            width: 100%;
+            align: center;
+            border-collapse: collapse;
+            border: none;
+        }
+        td
+        {
+            border: solid windowtext 1.0pt;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        备注：PK——主键，AI——标识，FK——外键</div>
+
+#foreach($!{Table} in $!{Tables})
+    <h3>
+        表$!{i}：$!{this.GetTable($i).Name}</h3>
+    <table cellpadding="5">
+        <tr style="font-weight: bold; font-size:14px;">
+            <td width="20%">
+                字段名称
+            </td>
+            <td width="15%">
+                数据类型
+            </td>
+            <td width="10%" align="center">
+                属性
+            </td>
+            <td width="10%" align="center">
+                允许空
+            </td>
+            <td width="10%" align="center">
+                默认值
+            </td>
+            <td width="35%">
+                备注
+            </td>
+        </tr>
+    #set($j=0)
+    #foreach($!{Column} in $!{this.GetColumns($i)})
+        <tr style=" font-size:14px;">
+            <td>
+                $!{this.GetColumn($!{this.GetColumns($i)},$j).Name}
+            </td>
+            <td>
+                $!{this.GetColumn($!{this.GetColumns($i)},$j).DataType}
+                ($!{this.GetColumn($!{this.GetColumns($i)},$j).MaxLength})
+            </td>
+            <td align="center">
+                #if($!{this.GetColumn($!{this.GetColumns($i)},$j).IsPrimaryKey})PK#end
+                &nbsp;&nbsp;
+                #if($!{this.GetColumn($!{this.GetColumns($i)},$j).IsAutoIncrease})AI#end
+            </td>
+            <td align="center">
+                #if($!{this.GetColumn($!{this.GetColumns($i)},$j).IsNullable})是#end
+            </td>
+            <td align="center">
+                $!{this.GetColumn($!{this.GetColumns($i)},$j).DefaultValue}
+            </td>
+            <td>
+                $!{this.GetColumn($!{this.GetColumns($i)},$j).Comment}
+            </td>
+        </tr>
+        #set($j=$j+1)
+    #end
+    </table>     
+    #set($i=$i+1)
+#end
+</body>
+</html>
