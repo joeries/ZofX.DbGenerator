@@ -1,30 +1,24 @@
 ﻿using System;
 using ZofX.Common.Attributes;
+using ZofX.Common.Model;
 
 namespace ZofX.Model
 {
     /// <summary>
     /// $!{Table.Comment}
     /// </summary>
-	[Table(Name = "$!{Table.Name}", Comment = "$!{Table.Comment}")]
+	[Table(Comment = "$!{Table.Comment}")]
     public class $!{Table.Name} : IModelable
     {
 #foreach($!{Column} in $!{Columns})
-		private $!{this.GetCsType($!{this.GetColumn($Table,$i)})} _$!{this.GetColumn($Table,$i).Name};
         /// <summary>
         /// $!{this.GetColumn($Table,$i).Comment}
         /// </summary>
 		[Column(DisplayName = "$!{this.GetColumn($Table,$i).Name}", Comment = "$!{this.GetColumn($Table,$i).Comment}", DataType = "$!{this.GetDbType($!{this.GetColumn($Table,$i)})}", MaxLength = $!{this.GetColumn($Table,$i).MaxLength}, IsPrimaryKey = $!{this.GetColumn($Table,$i).IsPrimaryKey.ToString().ToLower()}, IsAutoIncrease = $!{this.GetColumn($Table,$i).IsAutoIncrease.ToString().ToLower()}, IsForeignKey = false, IsNullable= $!{this.GetColumn($Table,$i).IsNullable.ToString().ToLower()})]
         public $!{this.GetCsType($!{this.GetColumn($Table,$i)})} $!{this.GetColumn($Table,$i).Name}
 		{ 
-			get
-			{
-				return _$!{this.GetColumn($Table,$i).Name};
-			}
-			set
-			{
-				_$!{this.GetColumn($Table,$i).Name} = value;
-			}
+			get;
+			set;
 		}
 
 #set($i=$i+1)
