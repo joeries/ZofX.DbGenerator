@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ZofX.DbGenerator.Model;
 using ZofX.DbGenerator.Core;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace ZofX.DbGenerator
 {
@@ -112,7 +113,16 @@ namespace ZofX.DbGenerator
                     Config.DatabaseName = txtOracleServer.Text.Trim();
                     break;
                 case Enums.EnumConnType.MySql:
-                    Config.ConnStr = string.Format("data source={0};Initial Catalog={1};uid={2};pwd={3}", txtSqlServer.Text.Trim(), txtSqlDb.Text.Trim(), txtSqlUser.Text.Trim(), txtSqlPwd.Text.Trim());
+                    Regex regex = new Regex(@"(.+):(\d+)");
+                    string server = txtSqlServer.Text.Trim();
+                    string port = "3306";
+                    Match m = regex.Match(server);
+                    if (m.Success)
+                    {
+                        server = m.Groups[1].Value;
+                        port= m.Groups[2].Value;
+                    }
+                    Config.ConnStr = string.Format("host={0};port={1};database={2};uid={3};pwd={4}", server, port, txtSqlDb.Text.Trim(), txtSqlUser.Text.Trim(), txtSqlPwd.Text.Trim());
                     Config.DatabaseName = txtSqlDb.Text.Trim();
                     break;
                 default:

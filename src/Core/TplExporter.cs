@@ -212,6 +212,10 @@ namespace ZofX.DbGenerator.Core
         /// <returns></returns>
         public string GetDbType(Column column)
         {
+            if (null == column.DataTypeMapping)
+            {
+                return "";
+            }
             return column.DataTypeMapping.DbType;
         }
     }

@@ -182,7 +182,7 @@ namespace ZofX.DbGenerator.Core
         {
             ConnEventArgs args = new ConnEventArgs();
 
-            DataSet ds = db.GetList(string.Format(Config.Sql[connType].GetTablesSql, " and Name LIKE '%" + strTableNameLike + "%'", Config.DatabaseName));           
+            DataSet ds = db.GetList(string.Format(Config.Sql[connType].GetTablesSql, " and " + (connType == Enums.EnumConnType.MySql ? "TABLE_NAME" : "Name") + " LIKE '%" + strTableNameLike + "%'", Config.DatabaseName));
             if (null != ds && ds.Tables.Count > 0)
             {
                 List<Table> tables = TableListConverter.TableToList<Table>(ds.Tables[0]);
@@ -190,7 +190,7 @@ namespace ZofX.DbGenerator.Core
                 args.NowIndex = 0;
                 foreach (Table table in tables)
                 {
-                    DataSet dsColumns = db.GetList(string.Format(Config.Sql[connType].GetColumnsSql, table.Name));
+                    DataSet dsColumns = db.GetList(string.Format(Config.Sql[connType].GetColumnsSql, table.Name, Config.DatabaseName));
                     List<Column> columns = TableListConverter.TableToList<Column>(dsColumns.Tables[0]);
                     table.Columns = columns;
                     foreach (Column column in table.Columns)
