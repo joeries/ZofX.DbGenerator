@@ -2,6 +2,7 @@
 This is an application for generating data dictionary and entity class from database such as Access,SQL Server,MySQL and so on.
 
 ![Application UI Snapshot](https://images.gitee.com/uploads/images/2019/0621/163604_2ce91601_27856.png "20190621163543.png")
+* If not default port，input text like "127.0.0.1,1433" while using SQL Server，input text like "127.0.0.1:3306" while using other DBMS。
 
 # Database Config in SqlList.config
 * SqlList.config's format follows below:
